@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{url_for('static', filename='images/bat.png')}}">
+    <link href="{{ url_for('static',filename='styles.css') }}" rel="stylesheet" type="text/css" />
+    <title>Icy Caverns</title>
+</head>
+<style>
+    body {
+        background-color: rgb(40,40,40);
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    #title {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /* width: 20em; */
+        /* height: 5em; */
+        color:white;
+        font-size: 30px;
+    }
+    #game {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+        padding-top: 1em;
+        padding-left: 1em;
+        padding-bottom: 1em;
+        padding-right: 1em;
+    }
+
+    nav {
+        display: flex;
+        background-color: rgb(43, 41, 41);
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+        padding-bottom: 1em;
+    }
+
+    #emailInput {
+        border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        box-shadow: 5px 6px #888888;
+    }
+
+    #emailButton {
+        border: none;
+        color:white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        background: 	rgb(88,88,88);
+        /* background: #2c3e50; */
+        box-shadow: 5px 6px #888888;
+    }
+
+    #screen {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #inputs {
+        /* margin-top: 1.5vh; */
+        padding: 1.5em;
+        display: flex;
+        /* justify-content: center; */
+        border-radius: 10px;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+        background-color: 	rgb(64,64,64);
+        margin-right: 4em;
+        margin-left: 1em;
+        margin-top: 1em;
+        flex-direction: column;
+    }
+
+    h2 {
+        color: aliceblue;
+    }
+
+    .speech {
+        position: relative;
+        font-size: 18px;
+        line-height: 24px;
+        background: 	rgb(64,64,64);
+        border-radius: 10px;
+        padding: 24px;
+        text-align: center;
+        color: white;
+        margin-right: 4em;
+        margin-left: 1em;
+        margin-top: 1em;
+        padding: 1.5em;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+    }
+
+    .speech-bottom {
+        color:rgb(197, 105, 43);
+    }
+
+    .pumpkin {
+        position: absolute;
+    }
+
+    #pumpkin {
+        top: 5.5em;
+        left: 90rem;
+    }
+
+    #pumpkin1 {
+        top: 5.5em;
+        left: 115rem;
+        width: 40px;
+        height: 50px;
+    }
+
+    #pumpkin2 {
+        top: 5.5em;
+        left: 0rem;
+        width: 50px;
+        height: 75px;
+    }
+
+    #pumpkin3 {
+        top: 51.5rem;
+        left: 69rem;
+        width: 100px;
+        height: 100px;
+    }
+
+    #pumpkin4 {
+        top: 0;
+        left: 34rem;
+    }
+
+    #pumpkin5 {
+        top: 0;
+        left: 80rem;
+    }
+
+    #pumpkin6 {
+        top: 0rem;
+        left: 100rem;
+    }
+
+    #pumpkin7 {
+        top: 0;
+    }
+
+    .top-score {
+        position: relative;
+        background: rgb(64,64,64);
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        margin-right: 4em;
+        margin-left: 1em;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+        padding: 0.05em;
+    }
+
+    .top-score > h1 {
+        border-radius: 10px;
+        font-size: 3.5em;
+        background-color: #888888;
+        margin-right: 1.75em;
+        margin-left: 1.75em;
+    }
+
+
+</style>
+<body>
+    <nav>
+        <h1 id="title">Bat Escape</h1>
+    </nav>
+    <div id="screen">
+        <img id="game" src="{{ url_for('video_feed') }}" alt="Game">
+        <div>
+        <div class="top-score">
+            <h2>Instructions</h2>
+            <h3>Welcome to the game of Bat Escape</h3>
+        </div>
+        <h2 class="speech speech-bottom-left">1. Dodge the ghosts to survive!</h2>
+        <h2 class="speech speech-bottom-left">2. Number of ghosts increases by 1 every 5 seconds!</h2>
+        <h2 class="speech speech-bottom">3. Reach 30 seconds to win!</h2>
+        <h2 class="speech speech-bottom-left">How long will you last...</h2>
+        <form id="inputs" action="#" method="post">
+            <h2>Invite Your Friends!</h2>
+            <div>
+                <input name="emailInput" id="emailInput" placeholder="Enter Email..."/>
+                <button id="emailButton">Send</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <img id="pumpkin" class="pumpkin" src="{{url_for('static', filename='images/pumpkin.png')}}">
+    <img id="pumpkin1" class="pumpkin" src="{{url_for('static', filename='images/pumpkin.png')}}">
+    <img id="pumpkin2" class="pumpkin" src="{{url_for('static', filename='images/pumpkin.png')}}">
+    <img id="pumpkin3" class="pumpkin" src="{{url_for('static', filename='images/pumpkin.png')}}">
+    <img id="pumpkin4" class="pumpkin" src="{{url_for('static', filename='images/ghost.png')}}">
+    <img id="pumpkin5" class="pumpkin" src="{{url_for('static', filename='images/ghost.png')}}">
+    <img id="pumpkin6" class="pumpkin" src="{{url_for('static', filename='images/ghost.png')}}">
+    <img id="pumpkin7" class="pumpkin" src="{{url_for('static', filename='images/ghost.png')}}">
+</body>
+</html>
